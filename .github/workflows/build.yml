@@ -19,7 +19,7 @@ jobs:
           echo 'Loading jasper'
           module load jasper/2406/24.06.001
           echo 'Printing version'
-          jg -version
+          jg -version |& tee jg_version.log
           
       # Upload artifact
       - name: Upload logs
