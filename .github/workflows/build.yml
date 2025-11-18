@@ -12,23 +12,20 @@ jobs:
     
     steps:
       - uses: actions/checkout@v5
-      
-      - name: Debug
+      - name: Debug + Run Jasper
         run: |
-          echo "Starting step..."
-          set verbose        # <-- prints each command before execution
-          set echo           # <-- prints each argument as it is evaluated
+          set verbose
+          set echo
           source /apps/cc/user_env/tools_cshrc
           echo "Current user: $USER"
           echo "Current dir: $PWD"
           echo "PATH: $PATH"
           echo "Modules command test:"
           which module
-          module list  
-          
-      # Upload artifact
-      - name: Upload logs
-        uses: actions/upload-artifact@v4
-        with:
-          name: jg-logs        # Artifact name
-          path: jg_version.log # File or folder to upload
+          module list
+          echo 'Loading jasper'
+          module load jasper/2406/24.06.001
+          echo 'Printing version'
+          jg -version |& tee jg_version.log
+
+     
