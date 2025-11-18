@@ -16,10 +16,12 @@ jobs:
       - name: Run Jasper 
         run: |
           source /apps/cc/user_env/tools_cshrc
-          echo 'Loading jasper'
-          module load jasper/2406/24.06.001
-          echo 'Printing version'
-          jg -version |& tee jg_version.log
+          echo "Current user: $USER"
+          echo "Current dir: $PWD"
+          echo "PATH: $PATH"
+          echo "Modules command test:"
+          which module
+          module list  
           
       # Upload artifact
       - name: Upload logs
