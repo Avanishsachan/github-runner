@@ -16,9 +16,8 @@ jobs:
         shell: csh {0}   # using your csh shell
         run: |
           echo "Hello from self-hosted runner"
-          date |& tee run.log
-          echo "Listing current dir"
-          ls -al |& tee -a run.log
+          echo "Listing current dir" |& tee run.log
+          date |& tee -a run.log
 
       # Upload the log as artifact
       - name: Upload log artifact
