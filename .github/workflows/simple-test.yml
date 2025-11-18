@@ -8,24 +8,21 @@ jobs:
 
     steps:
       - uses: actions/checkout@v5
-
-      - name: Print workspace info
-        run: |
-          echo "Workspace: $PWD"
-          ls -la
-
       - name: Run command and capture output
-        shell: csh {0}
+        shell: csh -f {0}
         run: |
-          echo "Hello from self-hosted runner"
-          echo "Creating log file..."
-          echo "Listing current dir" | tee run.log
-          date | tee -a run.log
-          echo "Done writing log"
-          ls -la run.log   # <--- prove file exists
+          echo "Hello from runner"
+          echo "Time now:" > run.log
+          date >> run.log
+      - name: Verify log exists
+        run: |
+          echo "Listing workspace:"
+          ls -al
 
       - name: Upload log artifact
         uses: actions/upload-artifact@v4
         with:
           name: run-log
           path: run.log
+
+     
