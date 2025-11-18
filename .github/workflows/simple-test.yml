@@ -13,7 +13,7 @@ jobs:
 
       # Run a simple command and log
       - name: Run command and capture output
-        shell: csh -e {0}   # using your csh shell
+        shell: csh {0}   # using your csh shell
         run: |
           echo "Hello from self-hosted runner"
           date |& tee run.log
