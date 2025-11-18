@@ -8,7 +8,7 @@ defaults:
 
 jobs:
   print-jg-version:
-    runs-on: [self-hosted,linux, x64, chamber]
+    runs-on: [self-hosted, Linux, X64]
     steps:
       - uses: actions/checkout@v5
       - run: |
