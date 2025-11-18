@@ -1,4 +1,3 @@
-
 name: simple-test
 
 on: [push]
@@ -8,18 +7,23 @@ jobs:
     runs-on: [self-hosted, Linux, X64]
 
     steps:
-      # Checkout code
       - uses: actions/checkout@v5
 
-      # Run a simple command and log
+      - name: Print workspace info
+        run: |
+          echo "Workspace: $PWD"
+          ls -la
+
       - name: Run command and capture output
-        shell: csh {0}   # using your csh shell
+        shell: csh {0}
         run: |
           echo "Hello from self-hosted runner"
-          echo "Listing current dir" |& tee run.log
-          date |& tee -a run.log
+          echo "Creating log file..."
+          echo "Listing current dir" | tee run.log
+          date | tee -a run.log
+          echo "Done writing log"
+          ls -la run.log   # <--- prove file exists
 
-      # Upload the log as artifact
       - name: Upload log artifact
         uses: actions/upload-artifact@v4
         with:
