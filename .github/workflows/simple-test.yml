@@ -2,18 +2,23 @@ name: simple-test
 
 on: [push]
 
+defaults:
+  run:
+    shell: csh -f {0}
+
 jobs:
   run-command:
     runs-on: [self-hosted, Linux, X64]
 
     steps:
       - uses: actions/checkout@v5
+
       - name: Run command and capture output
-        shell: csh -f {0}
         run: |
           echo "Hello from runner"
           echo "Time now:" > run.log
           date >> run.log
+
       - name: Verify log exists
         run: |
           echo "Listing workspace:"
@@ -24,5 +29,3 @@ jobs:
         with:
           name: run-log
           path: run.log
-
-     
