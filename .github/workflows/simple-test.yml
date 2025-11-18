@@ -28,4 +28,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: run-log
-          path: run.log
+          path:  ${{ github.workspace }}/run.log
