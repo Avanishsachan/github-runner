@@ -9,23 +9,25 @@ defaults:
 jobs:
   print-jg-version:
     runs-on: [self-hosted, Linux, X64]
-    
     steps:
+      # Checkout code
       - uses: actions/checkout@v5
-      - name: Debug + Run Jasper
+
+      # Run a simple command and log
+      - name: Run command and capture output
         run: |
           set verbose
           set echo
-          source /apps/cc/user_env/tools_cshrc
-          echo "Current user: $USER"
-          echo "Current dir: $PWD"
-          echo "PATH: $PATH"
-          echo "Modules command test:"
-          which module
-          module list
-          echo 'Loading jasper'
-          module load jasper/2406/24.06.001
-          echo 'Printing version'
-          jg -version |& tee jg_version.log
+          echo "Hello from self-hosted runner"
+          date |& tee run.log
+          echo "Listing current dir"
+          ls -al |& tee -a run.log
 
+      # Upload the log as artifact
+      - name: Upload log artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-log
+          path: run.log
+    
      
