@@ -1,0 +1,18 @@
+name: build
+
+on: [push]
+
+defaults:
+  run:
+    shell: csh -e {0}
+
+jobs:
+  print-jg-version:
+    runs-on: [linux, x64, chamber]
+    steps:
+      - uses: actions/checkout@v5
+      - run: |
+          echo 'Loading jasper'
+          module load jasper/2406/24.06.001
+          echo 'Printing version'
+          jg -version
