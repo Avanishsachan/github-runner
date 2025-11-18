@@ -1,0 +1,4 @@
+Github Runner Test
+This is a test to see if we can use Github for CI inside Cadence Cloud.
+
+The CI workflow just loads the Jasper Gold TCL module and prints its version (jg -version).
