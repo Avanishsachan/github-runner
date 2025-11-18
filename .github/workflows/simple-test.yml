@@ -1,3 +1,4 @@
+
 name: simple-test
 
 on: [push]
@@ -14,8 +15,6 @@ jobs:
       - name: Run command and capture output
         shell: csh -e {0}   # using your csh shell
         run: |
-          set verbose
-          set echo
           echo "Hello from self-hosted runner"
           date |& tee run.log
           echo "Listing current dir"
