@@ -13,8 +13,11 @@ jobs:
     steps:
       - uses: actions/checkout@v5
       
-      - name: Run Jasper 
+      - name: Debug
         run: |
+          echo "Starting step..."
+          set verbose        # <-- prints each command before execution
+          set echo           # <-- prints each argument as it is evaluated
           source /apps/cc/user_env/tools_cshrc
           echo "Current user: $USER"
           echo "Current dir: $PWD"
