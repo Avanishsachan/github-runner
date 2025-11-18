@@ -15,12 +15,14 @@ jobs:
 
       - name: Run command and capture output
         run: |
+          setenv https_proxy http://af40-proxy:3129
           echo "Hello from runner"
           echo "Time now:" > run.log
           date >> run.log
 
       - name: Verify log exists
         run: |
+          setenv https_proxy http://af40-proxy:3129
           echo "Listing workspace:"
           ls -al
 
